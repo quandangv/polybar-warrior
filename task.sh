@@ -89,11 +89,13 @@ echo $$
 update_index
 while true; do
 	# do a forced update every $dirty_countdown_max
-	dirty_countdown=$(((dirty_countdown + 1) % $reload_rate))
-	if [ $dirty_countdown -eq 0 ]
-	then
-		((index++))
-		update_index
+	if [ $dirty -eq 0 ] && [ $marking -eq 0 ]; then
+		dirty_countdown=$(((dirty_countdown + 1) % $reload_rate))
+		if [ $dirty_countdown -eq 0 ]
+		then
+			((index++))
+			update_index
+		fi
 	fi
 	# echo the displayed task when dirty
 	if [ $dirty -ne 0 ]
