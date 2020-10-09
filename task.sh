@@ -12,7 +12,7 @@ reload_rate=10
 # if so, clicking will cancel marking
 marking=0
 
-while getopts ":a:" opt; do
+while getopts ":r:" opt; do
   case $opt in
     r) reload_rate="$OPTARG"
     ;;
@@ -89,7 +89,7 @@ echo $$
 update_index
 while true; do
 	# do a forced update every $dirty_countdown_max
-	dirty_countdown=$(((dirty_countdown + 1) % reload_rate))
+	dirty_countdown=$(((dirty_countdown + 1) % $reload_rate))
 	if [ $dirty_countdown -eq 0 ]
 	then
 		((index++))
