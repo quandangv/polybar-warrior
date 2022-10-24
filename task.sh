@@ -31,7 +31,7 @@ echo_task () {
 		index=-1
 	fi
 	current_desc=`echo "${descriptions}" | sed -n $((index))p`
-	current_due=`task $filter rc.verbose: rc.report.minimal.columns:due.relative rc.report.minimal.sort=id rc.report.minimal.labels:1 minimal | sed -n $((index))p`
+	current_due=`task $filter rc.verbose: rc.report.minimal.columns:id,due.relative rc.report.minimal.sort=id rc.report.minimal.labels:1,1 minimal | sed  -e "s/^[[:digit:]]\+$//" -e "s/^[[:digit:]]\+\s\+//" | sed -n $((index))p`
 	echo "$index" > /tmp/tw_polybar_id
 	if [ -z "$current_due" ]
 	then
