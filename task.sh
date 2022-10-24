@@ -23,9 +23,9 @@ done
 
 # echo the task with the specified id
 echo_task () {
-	descriptions=`task $filter rc.verbose: rc.report.next.columns:description rc.report.next.labels:1 next`
+	descriptions=`task $filter rc.verbose: rc.report.minimal.columns:description.count rc.report.minimal.labels:1 minimal`
 	count=`echo "${descriptions}" | wc -l`
-	if [ $count -gt 0 ]; then 
+	if [ $count -gt 0 ]; then
 		index=$(((index-1) % count + 1))
 	else
 		index=-1
@@ -55,7 +55,7 @@ cancel_marking() {
 	marking=0
 	echo Canceled!
 	sleep 1 &
-	wait 
+	wait
 	echo_task
 }
 click1() {
@@ -63,7 +63,7 @@ click1() {
 		# increment $index and display next task
 		((index++))
 		echo_task
- 
+
 	else
 		cancel_marking
 	fi
