@@ -32,7 +32,7 @@ echo_task () {
 	fi
 	current_desc=`echo "${descriptions}" | sed -n $((index))p`
 	current_due=`task $filter rc.verbose: rc.report.next.columns:due.relative rc.report.next.labels:1 next | sed -n $((index))p`
-	echo "$1" > /tmp/tw_polybar_id
+	echo "$index" > /tmp/tw_polybar_id
 	if [ -z "$current_due" ]
 	then
 		echo " $current_desc"
