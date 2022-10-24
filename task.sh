@@ -14,7 +14,7 @@ while getopts ":r:f:" opt; do
   case $opt in
     r) reload_rate="$OPTARG"
     ;;
-    p) filter="$OPTARG"
+    f) filter="$OPTARG"
     ;;
     \?) echo "Invalid option -$OPTARG" >&2
     ;;
