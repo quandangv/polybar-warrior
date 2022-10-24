@@ -23,7 +23,7 @@ done
 
 # echo the task with the specified id
 echo_task () {
-	descriptions=`task $filter rc.verbose: rc.report.minimal.columns:description.count rc.report.minimal.labels:1 minimal`
+	descriptions=`task $filter rc.verbose: rc.report.minimal.columns:description.count rc.report.minimal.sort=id rc.report.minimal.labels:1 minimal`
 	count=`echo "${descriptions}" | wc -l`
 	if [ $count -gt 0 ]; then
 		index=$(((index-1) % count + 1))
@@ -31,7 +31,7 @@ echo_task () {
 		index=-1
 	fi
 	current_desc=`echo "${descriptions}" | sed -n $((index))p`
-	current_due=`task $filter rc.verbose: rc.report.next.columns:due.relative rc.report.next.labels:1 next | sed -n $((index))p`
+	current_due=`task $filter rc.verbose: rc.report.minimal.columns:due.relative rc.report.minimal.sort=id rc.report.minimal.labels:1 minimal | sed -n $((index))p`
 	echo "$index" > /tmp/tw_polybar_id
 	if [ -z "$current_due" ]
 	then
